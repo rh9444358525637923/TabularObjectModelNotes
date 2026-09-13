@@ -9,6 +9,8 @@
   * レポート: Power BI Desktop からの発行（Publish）[cite: 2]
   * モデル: TOM ライブラリを組み込んだ独自デプロイツール（VB.NET / PowerShell）によるXMLAエンドポイントへの更新[cite: 2]
 
+* [TMDL の概要 ★このページの情報をベースにしている★シリアライズ・デシリアイズ手順記載有](https://learn.microsoft.com/ja-jp/analysis-services/tmdl/tmdl-how-to?view=sql-analysis-services-2025)
+
 ### 【なぜこのアーキテクチャなのか？（採用理由）】[cite: 2]
 1. **クラウド上のDirect Lakeの制約:** Direct Lakeモデルは従来のPBIXファイルとしてダウンロードできないため、モデル定義をテキスト（TMDL）として抽出・保存する仕組みが不可欠である。[cite: 2]
 2. **完全な履歴保持と切り戻しの担保:** Deployment Pipelines（Fabric標準機能）単体では、Git未導入環境において「ソースコードとしてのバックアップ」が残らない。[cite: 2] 万一の障害時に「1行のDAXの修正」レベルでの迅速な差分比較・切り戻しを実現するため、手元へのTMDL/PBIX抽出とファイル保管を必須とする。[cite: 2]
@@ -317,3 +319,13 @@ End Namespace
    * Step 3 のデプロイ作業は、Gitへ `push`（または Pull Request のマージ）を行うだけで、Fabric の「Git統合機能」がTMDLとPBIPを自動検知し、本番ワークスペースへ同期する形に進化します。[cite: 2]
 
 現行の運用は、将来の完全自動化・テキストベース管理に向けた、組織のナレッジ蓄積と移行準備として最適なステップとなります。[cite: 2]
+
+---
+
+## 7. 参考資料
+
+* [TMDL の概要 ★このページの情報をベースにしている★シリアライズ・デシリアイズ手順記載有](https://learn.microsoft.com/ja-jp/analysis-services/tmdl/tmdl-how-to?view=sql-analysis-services-2025)
+* [Analysis Services のリファレンス)](https://learn.microsoft.com/ja-jp/analysis-services/analysis-services-references?view=sql-analysis-services-2025)
+* [Microsoft.AnalysisServices 名前空間](https://learn.microsoft.com/ja-jp/dotnet/api/microsoft.analysisservices?view=analysisservices-dotnet)
+* [Microsoft.AnalysisServices.Tabular 名前空間](https://learn.microsoft.com/ja-jp/dotnet/api/microsoft.analysisservices.tabular?view=analysisservices-dotnet)
+```
